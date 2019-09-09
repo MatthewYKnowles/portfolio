@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ConnectFourComponent } from './connect-four.component';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('ConnectFourComponent', () => {
   let component: ConnectFourComponent;
@@ -8,7 +9,8 @@ describe('ConnectFourComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ConnectFourComponent ]
+      declarations: [ ConnectFourComponent ],
+      imports: [HttpClientTestingModule]
     })
     .compileComponents();
   }));

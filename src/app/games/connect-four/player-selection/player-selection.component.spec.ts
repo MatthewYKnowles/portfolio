@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PlayerSelectionComponent } from './player-selection.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {RouterTestingModule} from '@angular/router/testing';
+import {ConnectFourComponent} from '../connect-four.component';
 
 describe('PlayerSelectionComponent', () => {
   let component: PlayerSelectionComponent;
@@ -8,7 +11,8 @@ describe('PlayerSelectionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlayerSelectionComponent ]
+      declarations: [ PlayerSelectionComponent, ConnectFourComponent ],
+      imports: [ReactiveFormsModule, RouterTestingModule]
     })
     .compileComponents();
   }));
