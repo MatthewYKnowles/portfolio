@@ -1,0 +1,23 @@
+<div *ngIf="selectingPlayers">
+  <h3>Choose Players</h3>
+  <form class="col-lg-4 col-md-6" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="playerOne">Player One</label>
+      <input
+        type="text"
+        id="playerOne"
+        formControlName="playerOneName">
+    </div>
+    <div>
+      <label for="playerTwo">Player Two</label>
+      <input
+        type="text"
+        id="playerTwo"
+        formControlName="playerTwoName">
+    </div>
+    <button>Start Game</button>
+  </form>
+</div>
+<div *ngIf="!selectingPlayers">
+  <app-connect-four [playerOneName]="playerOneName" [playerTwoName]="playerTwoName"></app-connect-four>
+</div>
