@@ -1,21 +1,22 @@
-<div>
-  <div class="topItems" id="redPlayer">
-    <h4>{{playerOneName}}</h4>
+<div class="container text-center">
+  <div>
+    <div class="topItems" id="redPlayer">
+      <h4>{{playerOneName}}</h4>
+    </div>
+    <div class="topItems" id="title">
+      <h2>Connect Four</h2>
+    </div>
+    <div class="topItems" id="blackPlayer">
+      <h4>{{playerTwoName}}</h4>
+    </div>
   </div>
-  <div class="topItems" id="title">
-    <h2>Connect Four</h2>
-  </div>
-  <div class="topItems" id="blackPlayer">
-    <h4>{{playerTwoName}}</h4>
-  </div>
-</div>
-<div *ngIf="matchRecord"><h2>{{matchRecord.playerOne}} vs {{matchRecord.playerTwo}}: {{matchRecord.playerOneWins}}-{{matchRecord.playerTwoWins}}-{{matchRecord.ties}}</h2></div>
-<h1 *ngIf="state === gameOverState && state.isADraw === false" [style.color]="state.border"> {{state.winningPlayer}} wins!!</h1>
-<h1 *ngIf="state.isADraw">Draw</h1>
-<h3 *ngIf="state.columnIsFull">Column is Full</h3>
-<br/>
-<canvas #myCanvas width="700" height="600" (click)="state.clickOnCanvas($event)"
-        [style.border]="state.border"></canvas>
-<div id="newGame">
-  <button (click)="state.startNewGame()" [disabled]="state.recordingResult">{{state.newGameText}}</button>
+  <h2 *ngIf="matchRecord" id="record">{{matchRecord.playerOne}} vs {{matchRecord.playerTwo}}: {{matchRecord.playerOneWins}}-{{matchRecord.playerTwoWins}}-{{matchRecord.ties}}</h2>
+  <h1 *ngIf="state === gameOverState && state.isADraw === false" [style.color]="state.border"> {{state.winningPlayer}} wins!!</h1>
+  <h1 *ngIf="state.isADraw">Draw</h1>
+  <h3 *ngIf="state.columnIsFull">Column is full</h3>
+  <br/>
+  <canvas #myCanvas width="700" height="600" (click)="state.clickOnCanvas($event)"
+          [style.border]="state.border"></canvas>
+  <button class="btn btn-lg btn-success mt-3" (click)="state.startNewGame()"
+          [disabled]="state.recordingResult">{{state.newGameText}}</button>
 </div>
