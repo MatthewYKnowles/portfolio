@@ -13,7 +13,7 @@
   <h2 *ngIf="matchRecord" id="record">{{matchRecord.playerOne}} vs {{matchRecord.playerTwo}}: {{matchRecord.playerOneWins}}-{{matchRecord.playerTwoWins}}-{{matchRecord.ties}}</h2>
   <h1 *ngIf="state === gameOverState && state.isADraw === false" [style.color]="state.border"> {{state.winningPlayer}} wins!!</h1>
   <h1 *ngIf="state.isADraw">Draw</h1>
-  <h3 *ngIf="state.columnIsFull">Column is full</h3>
+  <h3 *ngIf="state.columnIsFull" data-test="column-warning">Column is full</h3>
   <br/>
   <canvas #myCanvas width="700" height="600" (click)="state.clickOnCanvas($event)"
           [style.border]="state.border"></canvas>

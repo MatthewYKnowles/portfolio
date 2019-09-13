@@ -6,16 +6,16 @@
         <div class="input-group-prepend">
           <div class="red-square"></div>
         </div>
-        <input type="text" class="form-control" placeholder="Player One" formControlName="playerOneName">
+        <input type="text" class="form-control" placeholder="Player One" formControlName="playerOneName" data-test="player-one">
       </div>
       <div class="input-group w-25 mx-auto mb-3">
         <div class="input-group-prepend">
           <div class="black-square"></div>
         </div>
-        <input type="text" class="form-control" placeholder="Player Two" formControlName="playerTwoName">
+        <input type="text" class="form-control" placeholder="Player Two" formControlName="playerTwoName" data-test="player-two">
       </div>
     </div>
-    <button class="btn btn-success" type="submit" [disabled]="form.invalid">Start Game</button>
+    <button class="btn btn-success" type="submit" [disabled]="form.invalid" data-test="start-game">Start Game</button>
   </form>
 </div>
 <div *ngIf="!selectingPlayers">
