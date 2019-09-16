@@ -12,9 +12,6 @@ export class NavigationBarComponent implements OnInit {
 
   ngOnInit() {
   }
-  navigateToConnectFour() {
-    this.router.navigate(['player-selection']);
-  }
 
   goToTalks() {
     this.router.navigate(['talks']);

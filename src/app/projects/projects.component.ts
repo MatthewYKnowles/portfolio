@@ -14,6 +14,6 @@ export class ProjectsComponent implements OnInit {
   }
 
   goToConnectFour() {
-    this.router.navigate(['connect-four']);
+    this.router.navigate(['player-selection']);
   }
 }
