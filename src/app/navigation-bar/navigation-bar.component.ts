@@ -16,4 +16,11 @@ export class NavigationBarComponent implements OnInit {
     this.router.navigate(['player-selection']);
   }
 
+  goToTalks() {
+    this.router.navigate(['talks']);
+  }
+
+  goToProjects() {
+    this.router.navigate(['projects']);
+  }
 }
