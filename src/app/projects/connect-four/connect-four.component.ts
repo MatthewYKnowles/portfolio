@@ -61,7 +61,7 @@ class GameOverState implements State {
   border: string;
   borderColor = 'yellow';
   recordingResult = false;
-  constructor(private gameboardComponent: ConnectFourComponent, private grid: Grid, private connectFourService: ConnectFourService) {
+  constructor(private connectFourComponent: ConnectFourComponent, private grid: Grid, private connectFourService: ConnectFourService) {
   }
 
   startNewGame() {
@@ -69,17 +69,18 @@ class GameOverState implements State {
     this.grid.resetGrid();
     this.winningPlayer = '';
     this.isADraw = false;
-    this.gameboardComponent.setState(this.gameboardComponent.redsTurnState);
-    this.gameboardComponent.matchRecord = null;
+    this.connectFourComponent.setState(this.connectFourComponent.redsTurnState);
+    this.connectFourComponent.matchRecord = null;
   }
 
-  clickOnCanvas(event: MouseEvent): void {}
+  clickOnCanvas(event: MouseEvent): void {
+  }
 }
 
 abstract class PlayersTurn implements State {
   protected playerColor: string;
   protected winningString: string;
-  protected gameboardComponent: ConnectFourComponent;
+  protected connectFourComponent: ConnectFourComponent;
   protected connectFourService: ConnectFourService;
   protected grid: Grid;
   protected playerName: string;
@@ -128,24 +129,24 @@ abstract class PlayersTurn implements State {
     this.winningPlayer = '';
     this.isADraw = false;
     this.columnIsFull = false;
-    this.gameboardComponent.setState(this.gameboardComponent.redsTurnState);
+    this.connectFourComponent.setState(this.connectFourComponent.redsTurnState);
   }
 
   private setGameOverState() {
-    this.gameboardComponent.setState(this.gameboardComponent.gameOverState);
-    this.gameboardComponent.state.recordingResult = true;
-    this.gameboardComponent.state.winningPlayer = this.playerName;
-    this.gameboardComponent.state.border = this.border;
-    if (this.grid.checkForDraw()) {this.gameboardComponent.state.isADraw = true; }
+    this.connectFourComponent.setState(this.connectFourComponent.gameOverState);
+    this.connectFourComponent.state.recordingResult = true;
+    this.connectFourComponent.state.winningPlayer = this.playerName;
+    this.connectFourComponent.state.border = this.border;
+    if (this.grid.checkForDraw()) {this.connectFourComponent.state.isADraw = true; }
     const connectFourGameResult: ConnectFourGameResult = {
-      playerOneName: this.gameboardComponent.playerOneName.toLowerCase(),
-      playerTwoName: this.gameboardComponent.playerTwoName.toLowerCase(),
+      playerOneName: this.connectFourComponent.playerOneName.toLowerCase(),
+      playerTwoName: this.connectFourComponent.playerTwoName.toLowerCase(),
       gameResult: this.grid.checkForDraw() ? 'tie' : 'win',
       winningPlayer: this.grid.checkForDraw() ? 'tie' : this.playerName.toLowerCase()
     };
-    this.gameboardComponent.connectFourRestService.recordConnectFourResult(connectFourGameResult).subscribe((response) => {
-      this.gameboardComponent.matchRecord = response;
-      this.gameboardComponent.state.recordingResult = false;
+    this.connectFourComponent.connectFourRestService.recordConnectFourResult(connectFourGameResult).subscribe((response) => {
+      this.connectFourComponent.matchRecord = response;
+      this.connectFourComponent.state.recordingResult = false;
     });
   }
 
@@ -165,17 +166,17 @@ export class RedsTurnState extends PlayersTurn {
   playerColor = 'red';
   winningString = 'rrrr';
 
-  constructor(gameboardComponent: ConnectFourComponent, grid: Grid, connectFourService: ConnectFourService) {
+  constructor(connectFourComponent: ConnectFourComponent, grid: Grid, connectFourService: ConnectFourService) {
     super();
-    this.gameboardComponent = gameboardComponent;
+    this.connectFourComponent = connectFourComponent;
     this.grid = grid;
     this.connectFourService = connectFourService;
-    this.playerName = gameboardComponent.playerOneName;
+    this.playerName = connectFourComponent.playerOneName;
   }
 
   changeTurn(): void {
     this.columnIsFull = false;
-    this.gameboardComponent.setState(this.gameboardComponent.blacksTurnState);
+    this.connectFourComponent.setState(this.connectFourComponent.blacksTurnState);
   }
 }
 
@@ -185,18 +186,18 @@ export class BlacksTurnState extends PlayersTurn {
   playerColor = 'black';
   winningString = 'bbbb';
 
-  constructor(gameboardComponent: ConnectFourComponent, grid: Grid, connectFourService: ConnectFourService) {
+  constructor(connectFourComponent: ConnectFourComponent, grid: Grid, connectFourService: ConnectFourService) {
     super();
-    this.gameboardComponent = gameboardComponent;
+    this.connectFourComponent = connectFourComponent;
     this.grid = grid;
     this.connectFourService = connectFourService;
-    this.playerName = this.gameboardComponent.playerTwoName;
+    this.playerName = this.connectFourComponent.playerTwoName;
 
   }
 
   changeTurn(): void {
     this.columnIsFull = false;
-    this.gameboardComponent.setState(this.gameboardComponent.redsTurnState);
+    this.connectFourComponent.setState(this.connectFourComponent.redsTurnState);
   }
 }
 
@@ -205,11 +206,6 @@ export class Grid {
   constructor() {
     this.resetGrid();
   }
-
-  getGrid(): any {
-    return this.grid;
-  }
-
   resetGrid(): void {
     this.grid = {
       1: ['.', '.', '.', '.', '.', '.', '.'],

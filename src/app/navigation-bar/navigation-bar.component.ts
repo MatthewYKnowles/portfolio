@@ -14,10 +14,10 @@ export class NavigationBarComponent implements OnInit {
   }
 
   goToTalks() {
-    this.router.navigate(['talks']);
+    this.router.navigate(['talks']).then();
   }
 
   goToProjects() {
-    this.router.navigate(['projects']);
+    this.router.navigate(['projects']).then();
   }
 }
