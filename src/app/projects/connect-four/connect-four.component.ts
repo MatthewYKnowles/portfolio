@@ -73,7 +73,7 @@ class GameOverState implements State {
     this.connectFourComponent.matchRecord = null;
   }
 
-  clickOnCanvas(event: MouseEvent): void {
+  clickOnCanvas(): void {
   }
 }
 
@@ -192,7 +192,6 @@ export class BlacksTurnState extends PlayersTurn {
     this.grid = grid;
     this.connectFourService = connectFourService;
     this.playerName = this.connectFourComponent.playerTwoName;
-
   }
 
   changeTurn(): void {
