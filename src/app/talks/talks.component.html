@@ -1,1 +1,12 @@
 <h1 class="text-center">Conference Talks</h1>
+
+<div>
+  <div *ngFor="let talk of conferenceTalks" class="d-flex p-2 justify-content-center">
+      <div class="conference-talk">
+      <a href="{{talk.conferenceUrl}}"><h4 class="title m-0">
+        {{talk.talkDate | date: 'MM-dd-yyyy'}} - {{talk.conferenceTitle}} - {{talk.conferenceCity}}</h4></a>
+      <a href="{{talk.talkUrl}}"><p class="title">{{talk.talkTitle}}</p></a>
+    </div>
+  </div>
+</div>
+

@@ -2,7 +2,7 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ConnectFourService} from './services/connect-four.service';
 import {ConnectFourGameResult} from './models/connect-four-game.result';
 import {MatchRecord} from './models/match-record';
-import {ConnectFourRestService} from './services/connect-four-rest.service';
+import {PortfolioRestService} from '../../services/portfolio-rest.service';
 
 @Component({
   selector: 'app-connect-four',
@@ -19,10 +19,10 @@ export class ConnectFourComponent implements OnInit {
   @Input() playerOneName: string;
   @Input() playerTwoName: string;
   matchRecord: MatchRecord;
-  connectFourRestService: ConnectFourRestService;
+  portfolioRestService: PortfolioRestService;
 
-  constructor(connectFourRestService: ConnectFourRestService, private connectFourService: ConnectFourService) {
-    this.connectFourRestService = connectFourRestService;
+  constructor(portfolioRestService: PortfolioRestService, private connectFourService: ConnectFourService) {
+    this.portfolioRestService = portfolioRestService;
   }
 
   ngOnInit(): void {
@@ -144,7 +144,7 @@ abstract class PlayersTurn implements State {
       gameResult: this.grid.checkForDraw() ? 'tie' : 'win',
       winningPlayer: this.grid.checkForDraw() ? 'tie' : this.playerName.toLowerCase()
     };
-    this.connectFourComponent.connectFourRestService.recordConnectFourResult(connectFourGameResult).subscribe((response) => {
+    this.connectFourComponent.portfolioRestService.recordConnectFourResult(connectFourGameResult).subscribe((response) => {
       this.connectFourComponent.matchRecord = response;
       this.connectFourComponent.state.recordingResult = false;
     });

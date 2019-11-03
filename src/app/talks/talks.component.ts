@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {PortfolioRestService} from '../services/portfolio-rest.service';
+import {ConferenceTalk} from './conferenceTalk';
 
 @Component({
   selector: 'app-talks',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./talks.component.scss']
 })
 export class TalksComponent implements OnInit {
+  conferenceTalks: ConferenceTalk[];
 
-  constructor() { }
+  constructor(private portfolioRestService: PortfolioRestService) { }
 
   ngOnInit() {
+    this.portfolioRestService.getConferenceTalks().subscribe((conferenceTalks: ConferenceTalk[]) => {
+      this.conferenceTalks = conferenceTalks;
+    });
   }
-
 }
