@@ -8,13 +8,14 @@ import {HttpErrorResponse} from '@angular/common/http';
 describe('PortfolioRestService', () => {
   let service: PortfolioRestService;
   let http: HttpTestingController;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [PortfolioRestService],
       imports: [HttpClientTestingModule]
     });
-    service = TestBed.get(PortfolioRestService);
-    http = TestBed.get(HttpTestingController);
+    service = TestBed.inject(PortfolioRestService);
+    http = TestBed.inject(HttpTestingController);
   });
 
   it('should return an empty array when an error is received', () => {

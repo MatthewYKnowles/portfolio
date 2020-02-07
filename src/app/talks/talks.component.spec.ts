@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TalksComponent } from './talks.component';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 

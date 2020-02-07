@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ConnectFourComponent } from './connect-four.component';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 

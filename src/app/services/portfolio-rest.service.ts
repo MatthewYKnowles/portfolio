@@ -3,7 +3,7 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {ConnectFourGameResult} from '../projects/connect-four/models/connect-four-game.result';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
-import {catchError, map} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 import {ConferenceTalk} from '../talks/conferenceTalk';
 
 class ConferenceTalkResponse {
